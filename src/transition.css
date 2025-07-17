@@ -1,0 +1,79 @@
+@keyframes fade-in-scale {
+   from {
+      opacity: 0;
+      transform: scale(1.02);
+   }
+}
+@keyframes fade-out-scale {
+   to {
+      opacity: 0;
+      transform: scale(0.98);
+   }
+}
+
+@keyframes fade-in-scale-blur {
+   from {
+      opacity: 0;
+      transform: scale(1.02);
+      filter: blur(8px);
+   }
+}
+@keyframes fade-out-scale-blur {
+   to {
+      opacity: 0;
+      transform: scale(0.98);
+      filter: blur(8px);
+   }
+}
+
+@keyframes circle-reveal {
+   from {
+      clip-path: circle(0 at 100% 0);
+   }
+   to {
+      clip-path: circle(150% at 100% 0);
+   }
+}
+
+@keyframes slide-to-right {
+   from {
+      clip-path: inset(0 100% 0 0);
+   }
+   to {
+      clip-path: inset(0 0 0 0);
+   }
+}
+@keyframes slide-to-up {
+   from {
+      clip-path: inset(100% 0 0 0);
+   }
+   to {
+      clip-path: inset(0 0 0 0);
+   }
+}
+
+/* Transitions */
+::view-transition-old(*),
+::view-transition-new(*) {
+   animation-duration: 400ms;
+   animation-timing-function: ease-in-out;
+}
+
+/* Navigation transition */
+::view-transition-old(root) {
+   animation-name: fade-out-scale;
+}
+::view-transition-new(root) {
+   animation-name: fade-in-scale;
+   /* animation-name: slide-to-up; */
+   /* animation-name: slide-to-right; */
+}
+
+/* Theme transition */
+::view-transition-old(theme-transition) {
+   animation-name: none;
+}
+::view-transition-new(theme-transition) {
+   animation-name: circle-reveal;
+   animation-duration: 600ms;
+}

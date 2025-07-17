@@ -1,0 +1,53 @@
+{
+   "modules": [
+      {
+         "name": "App folder",
+         "pattern": "src/app/**",
+         "allowImportsFrom": [
+            "src/app/**",
+            "{sharedImports}",
+            "src/features/**"
+         ]
+      },
+
+      {
+         "name": "Features",
+         "pattern": "src/features/**",
+         "allowImportsFrom": [
+            "{family_3}/**",
+            "{sharedImports}",
+            "{featurePublicApis}"
+         ],
+         "errorMessage": "🔥 A feature can only import items from shared folders, its own feature, or the public API (index.ts) of other features. 🔥"
+      },
+
+      {
+         "name": "Shared",
+         "pattern": [
+            "src/shared/components/**",
+            "src/shared/hooks/**",
+            "src/shared/lib/**",
+            "src/shared/types/**"
+         ],
+         "allowImportsFrom": ["{sharedImports}"],
+         "errorMessage": "🔥 Shared folders can't import items from the `features` or `app` folders. 🔥"
+      },
+
+      {
+         "name": "Unknown files",
+         "pattern": [["src/**", "!src/*"]],
+         "allowImportsFrom": [],
+         "allowExternalImports": false,
+         "errorMessage": "🔥 This file is not specified as an independent module in `independentModules.jsonc`. 🔥"
+      }
+   ],
+   "reusableImportPatterns": {
+      "sharedImports": [
+         "src/shared/components/**",
+         "src/shared/hooks/**",
+         "src/shared/lib/**",
+         "src/shared/types/**"
+      ],
+      "featurePublicApis": ["src/features/*/index.ts"]
+   }
+}
